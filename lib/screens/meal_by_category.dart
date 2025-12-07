@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lab2_221059/screens/recipe.dart';
@@ -16,7 +15,7 @@ class MealPage extends StatefulWidget {
 }
 
 class _MealPageState extends State<MealPage> {
-  List<Meal> _meals = [];
+  // List<Meal> _meals = [];
   List<Meal> _filtered = [];
   bool _isLoading = true;
   late String category;
@@ -98,7 +97,7 @@ class _MealPageState extends State<MealPage> {
     final meals = await _apiService.loadMealsByCategory(category);
 
       setState(() {
-        _meals = meals;
+        // _meals = meals;
         _filtered = meals;
         _isLoading = false;
       });
