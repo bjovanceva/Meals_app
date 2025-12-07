@@ -22,6 +22,8 @@ class _MealPageState extends State<MealPage> {
   late String category;
   final ApiService _apiService = ApiService();
 
+
+
   @override
   void initState() {
     super.initState();

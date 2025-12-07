@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../models/meal_model.dart';
+import '../screens/favourite_meals.dart';
+import '../screens/meal_by_category.dart';
+import 'favourites.dart';
 
 
 
 class MealCard extends StatelessWidget{
 
   final Meal meal;
+
 
   const MealCard({super.key, required this.meal});
 
@@ -51,12 +55,38 @@ class MealCard extends StatelessWidget{
                   const SizedBox(width: 6),
                   Expanded(child:
                   Text(
-                    meal.name,
+                    meal.name.length > 15
+                        ? '${meal.name.substring(0, 15)}...'
+                        : meal.name,
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.redAccent
                     ),
                   ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 6),
+
+              if (!favouriteMeals.contains(meal))
+              Row(
+                children: [
+                  const SizedBox(width: 6),
+                  Expanded(child:
+                  ElevatedButton(
+                      onPressed: () {favouriteMeals.add(meal);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FavouriteMealsPage(meals: favouriteMeals),
+                        ),
+                      );},
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(Colors.lightGreen),
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
+                    ),
+                      child: Text('Add to favourites'),),
                   ),
                 ],
               ),
